@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import * 
-from consoleFunc import consoleFunc
+from Pyplop.Console.consoleFunc import consoleFunc
 
 class Console:
 

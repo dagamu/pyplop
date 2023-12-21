@@ -1,11 +1,11 @@
-from pyplop import pyPlop
+from Pyplop.pyplop import pyPlop
 
 game = pyPlop( 500, 500 )
-player = game.add({ 
-    "pos": pyPlop.pos( 100, 100 ),
-    "render": game.render.circle,
-    "collider": True,
-    "rigid": True
-})
+player = game.add([ 
+    pyPlop.pos(0,0),
+    pyPlop.render.circle(),
+    pyPlop.collider(0,0),
+    pyPlop.rigid(0,0)
+])
 
 game.run()

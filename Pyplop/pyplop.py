@@ -1,7 +1,8 @@
 import pygame
-from gameObject import gameObject 
-from RenderTypes import RenderT 
-from console import Console
+from Pyplop.gameObject import gameObject 
+from Pyplop.Components.Import import importComponents 
+from Pyplop.Console.console import Console
+
 
 class pyPlop:
 
@@ -14,7 +15,7 @@ class pyPlop:
         pygame.init()
         self.screen = pygame.display.set_mode((width, height))
         self.gameConsole = Console( self.screen )
-        setattr(self, 'render', RenderT )
+        
 
     def run( self ):
         while self.running:
@@ -23,7 +24,7 @@ class pyPlop:
             self.screen.fill( (13, 16, 23) )
             
             for obj in self.gameObjects:
-                obj.render( obj, self.screen )
+                obj.render( self.screen )
                 obj.update()
 
             if self.gameConsole.active:
@@ -33,18 +34,12 @@ class pyPlop:
             self.dt = self.clock.tick(60) / 1000
 
     def add( self, config ):
-        newObj = gameObject()
-        newObj.setPos( config["pos"] )
-        setattr(newObj, 'render', config["render"] )
-
+        newObj = gameObject( config )
         self.gameObjects.append( newObj )
 
-        return newObj, self      
-
-    def pos( x, y ):
-        return pygame.Vector2( x, y )
+        return newObj      
     
-    
+importComponents(pyPlop)
 
 def checkQuit():
     for event in pygame.event.get():
